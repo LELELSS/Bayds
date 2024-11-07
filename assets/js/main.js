@@ -1,18 +1,29 @@
 /*=============== SHOW MENU ===============*/
-
+const navMenu = document.getElementById('nav-menu'),
+    navToggle = document.getElementById('nav-toggle'),
+    navClose = document.getElementById('nav-close');
 /*===== MENU SHOW =====*/
 /* Validate if constant exists */
-
+if (navToggle) {
+    navToggle.addEventListener('click', () =>{
+        navMenu.classList.add('show-menu');
+    });
+}
 /*===== MENU HIDDEN =====*/
 /* Validate if constant exists */
-
+if (navClose) {
+    navClose.addEventListener('click', () => {
+        navMenu.classList.remove('show-menu');
+    });
+}
 /*==================== REMOVE MENU MOBILE ====================*/
 
 /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
-// Select all sections and navigation links
 const sections = document.querySelectorAll('section');
 const navLinks = document.querySelectorAll('.nav_link');
 
+
+// Function to set the active link based on scroll position
 function setActiveLink() {
     sections.forEach(section => {
         const sectionTop = section.offsetTop - 80;
@@ -31,7 +42,17 @@ function setActiveLink() {
     });
 }
 
+// Function to hide the navigation menu when a link is clicked
+function linkAction() {
+    navMenu.classList.remove('show-menu');
+}
+
+// Add scroll event listener to update active link
 window.addEventListener('scroll', setActiveLink);
+
+// Add click event listeners to each nav link to hide menu on click
+navLinks.forEach((link) => link.addEventListener('click', linkAction));
+
 /*==================== CHANGE BACKGROUND HEADER ====================*/
 function scrollHeader() {
     const header = document.getElementById('header');
